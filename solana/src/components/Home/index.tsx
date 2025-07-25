@@ -132,7 +132,7 @@ const Home = function () {
           <div className="text-center mb-16">
             <h2 className="text-4xl md:text-5xl font-bold mb-4 bg-gradient-to-r from-teal-400 to-green-400 bg-clip-text text-transparent">Built For Everyone</h2>
             <p className="text-xl max-w-2xl mx-auto text-gray-300">
-              Whether you're a crypto native or Reddit enthusiast, TokenReddit is for you
+              Whether you&apos;re a crypto native or Reddit enthusiast, TokenReddit is for you
             </p>
           </div>
 

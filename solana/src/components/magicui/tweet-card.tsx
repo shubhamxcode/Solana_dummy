@@ -1,9 +1,9 @@
 import { Suspense } from "react";
+import Image from "next/image";
 import {
   enrichTweet,
   type EnrichedTweet,
   type TweetProps,
-  type TwitterComponents,
 } from "react-tweet";
 import { getTweet, type Tweet } from "react-tweet/api";
 
@@ -103,7 +103,7 @@ export const TweetHeader = ({ tweet }: { tweet: EnrichedTweet }) => (
   <div className="flex flex-row justify-between tracking-tight">
     <div className="flex items-center space-x-2">
       <a href={tweet.user.url} target="_blank" rel="noreferrer">
-        <img
+        <Image
           title={`Profile picture of ${tweet.user.name}`}
           alt={tweet.user.screen_name}
           height={48}
@@ -120,10 +120,9 @@ export const TweetHeader = ({ tweet }: { tweet: EnrichedTweet }) => (
           className="flex items-center whitespace-nowrap font-semibold"
         >
           {truncate(tweet.user.name, 20)}
-          {tweet.user.verified ||
-            (tweet.user.is_blue_verified && (
-              <Verified className="ml-1 inline size-4 text-blue-500" />
-            ))}
+          {tweet.user.verified && (
+            <Verified className="ml-1 inline size-4 text-blue-500" />
+          )}
         </a>
         <div className="flex items-center space-x-1">
           <a
@@ -197,11 +196,13 @@ export const TweetMedia = ({ tweet }: { tweet: EnrichedTweet }) => {
         <div className="relative flex transform-gpu snap-x snap-mandatory gap-4 overflow-x-auto">
           <div className="shrink-0 snap-center sm:w-2" />
           {tweet.photos.map((photo) => (
-            <img
+            <Image
               key={photo.url}
               src={photo.url}
               title={"Photo by " + tweet.user.name}
               alt={tweet.text}
+              width={400}
+              height={256}
               className="h-64 w-5/6 shrink-0 snap-center snap-always rounded-xl border object-cover shadow-sm"
             />
           ))}
@@ -210,13 +211,15 @@ export const TweetMedia = ({ tweet }: { tweet: EnrichedTweet }) => {
       )}
       {!tweet.video &&
         !tweet.photos &&
-        // @ts-ignore
+        // @ts-expect-error - accessing nested card properties that may not be typed
         tweet?.card?.binding_values?.thumbnail_image_large?.image_value.url && (
-          <img
+          <Image
             src={
-              // @ts-ignore
+              // @ts-expect-error - accessing nested card properties that may not be typed
               tweet.card.binding_values.thumbnail_image_large.image_value.url
             }
+            width={400}
+            height={256}
             className="h-64 rounded-xl border object-cover shadow-sm"
             alt={tweet.text}
           />
@@ -227,12 +230,10 @@ export const TweetMedia = ({ tweet }: { tweet: EnrichedTweet }) => {
 
 export const MagicTweet = ({
   tweet,
-  components,
   className,
   ...props
 }: {
   tweet: Tweet;
-  components?: TwitterComponents;
   className?: string;
 }) => {
   const enrichedTweet = enrichTweet(tweet);
@@ -256,7 +257,6 @@ export const MagicTweet = ({
  */
 export const TweetCard = async ({
   id,
-  components,
   fallback = <TweetSkeleton />,
   onError,
   ...props
@@ -274,8 +274,7 @@ export const TweetCard = async ({
     : undefined;
 
   if (!tweet) {
-    const NotFound = components?.TweetNotFound || TweetNotFound;
-    return <NotFound {...props} />;
+    return <TweetNotFound {...props} />;
   }
 
   return (

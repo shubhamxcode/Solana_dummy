@@ -1,5 +1,4 @@
 import { cn } from "@/lib/utils";
-
 // Dummy data for tokenized Reddit posts
 const dummyFeedData = [
   {
@@ -7,7 +6,7 @@ const dummyFeedData = [
     user: {
       name: "CryptoEnthusiast",
       username: "crypto_eth",
-      avatar: "https://images.unsplash.com/photo-1535713875002-d1d0cf377fde?w=100&h=100&fit=crop&crop=face",
+      Image: "https://images.unsplash.com/photo-1535713875002-d1d0cf377fde?w=100&h=100&fit=crop&crop=face",
       verified: true
     },
     content: "Just discovered this amazing DeFi protocol that's revolutionizing yield farming! The APY is insane and the tokenomics are solid. DYOR but this could be huge! 🚀",
@@ -27,7 +26,7 @@ const dummyFeedData = [
     user: {
       name: "BlockchainDev",
       username: "dev_blockchain",
-      avatar: "https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?w=100&h=100&fit=crop&crop=face",
+      Image: "https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?w=100&h=100&fit=crop&crop=face",
       verified: false
     },
     content: "Built my first smart contract on Solana today! The speed and low fees are incredible compared to Ethereum. Here's what I learned about program development...",
@@ -47,7 +46,7 @@ const dummyFeedData = [
     user: {
       name: "NFTCollector",
       username: "nft_whale",
-      avatar: "https://images.unsplash.com/photo-1494790108755-2616b612b786?w=100&h=100&fit=crop&crop=face",
+      Image: "https://images.unsplash.com/photo-1494790108755-2616b612b786?w=100&h=100&fit=crop&crop=face",
       verified: true
     },
     content: "This NFT collection just dropped and it's already selling out! The art is phenomenal and the utility roadmap looks promising. Floor price went from 0.1 to 2.5 SOL in 2 hours! 🔥",
@@ -67,7 +66,7 @@ const dummyFeedData = [
     user: {
       name: "DeFiAnalyst",
       username: "defi_research",
-      avatar: "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=100&h=100&fit=crop&crop=face",
+      Image: "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=100&h=100&fit=crop&crop=face",
       verified: true
     },
     content: "Deep dive analysis: Why this new AMM protocol could disrupt the entire DeFi landscape. The math behind their constant product formula is genius! 🧮📊",
@@ -87,7 +86,7 @@ const dummyFeedData = [
     user: {
       name: "Web3Builder",
       username: "web3_dev",
-      avatar: "https://images.unsplash.com/photo-1519345182560-3f2917c472ef?w=100&h=100&fit=crop&crop=face",
+      Image: "https://images.unsplash.com/photo-1519345182560-3f2917c472ef?w=100&h=100&fit=crop&crop=face",
       verified: false
     },
     content: "Just launched my first dApp on Solana! It's a decentralized social platform where users can tokenize their posts. Early beta testers welcome! 🌐",
@@ -125,7 +124,7 @@ const PostCard = ({ post }: { post: typeof dummyFeedData[0] }) => {
       <div className="flex items-start justify-between mb-4">
         <div className="flex items-center space-x-3">
           <img
-            src={post.user.avatar}
+            src={post.user.Image}
             alt={post.user.name}
             className="w-12 h-12 rounded-full ring-2 ring-gray-600"
           />
