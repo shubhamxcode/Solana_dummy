@@ -120,23 +120,18 @@ const PostCard = ({ post }: { post: typeof dummyFeedData[0] }) => {
   const isPricePositive = post.priceChange.startsWith('+');
   
   return (
-    <div className={cn(
-      "relative flex w-full max-w-2xl flex-col gap-4 overflow-hidden rounded-lg border border-gray-800 bg-gray-900/90 p-6 backdrop-blur-md",
-      "hover:shadow-lg hover:shadow-purple-500/10 transition-all duration-200 hover:border-gray-700"
-    )}>
+    <div className="w-full max-w-2xl bg-gray-800/50 backdrop-blur-sm rounded-xl border border-gray-700 p-6 hover:border-gray-600 transition-all duration-200 hover:shadow-lg hover:shadow-blue-500/10">
       {/* Header */}
-      <div className="flex items-start justify-between">
+      <div className="flex items-start justify-between mb-4">
         <div className="flex items-center space-x-3">
           <img
             src={post.user.avatar}
             alt={post.user.name}
-            className="h-12 w-12 rounded-full border-2 border-gray-700"
+            className="w-12 h-12 rounded-full ring-2 ring-gray-600"
           />
-          <div className="flex flex-col">
+          <div>
             <div className="flex items-center gap-2">
-              <span className="font-semibold text-white">
-                {post.user.name}
-              </span>
+              <h3 className="font-semibold text-white">{post.user.name}</h3>
               {post.user.verified && <VerifiedIcon />}
             </div>
             <div className="flex items-center gap-2 text-sm text-gray-400">
@@ -151,7 +146,7 @@ const PostCard = ({ post }: { post: typeof dummyFeedData[0] }) => {
         
         {/* Token Price Badge */}
         <div className="flex flex-col items-end">
-          <div className="rounded-full bg-gradient-to-r from-purple-500 to-pink-500 px-3 py-1 text-sm font-semibold text-white">
+          <div className="rounded-full bg-gradient-to-r from-blue-500 to-cyan-500 px-3 py-1 text-sm font-semibold text-white shadow-lg">
             {post.tokenPrice}
           </div>
           <div className={cn(
@@ -169,23 +164,23 @@ const PostCard = ({ post }: { post: typeof dummyFeedData[0] }) => {
       </div>
 
       {/* Engagement Stats */}
-      <div className="flex items-center justify-between pt-4 border-t border-gray-800">
+      <div className="flex items-center justify-between pt-4 border-t border-gray-700">
         <div className="flex items-center space-x-6 text-sm text-gray-400">
-          <div className="flex items-center gap-2 hover:text-orange-400 cursor-pointer transition-colors">
+          <div className="flex items-center gap-2 hover:text-blue-400 cursor-pointer transition-colors">
             <svg className="h-4 w-4" fill="currentColor" viewBox="0 0 20 20">
               <path d="M2 10.5a1.5 1.5 0 113 0v6a1.5 1.5 0 01-3 0v-6zM6 10.333v5.43a2 2 0 001.106 1.79l.05.025A4 4 0 008.943 18h5.416a2 2 0 001.962-1.608l1.2-6A2 2 0 0015.56 8H12V4a2 2 0 00-2-2 1 1 0 00-1 1v.667a4 4 0 01-.8 2.4L6.8 7.933a4 4 0 00-.8 2.4z" />
             </svg>
             <span>{post.engagement.upvotes.toLocaleString()}</span>
           </div>
           
-          <div className="flex items-center gap-2 hover:text-blue-400 cursor-pointer transition-colors">
+          <div className="flex items-center gap-2 hover:text-cyan-400 cursor-pointer transition-colors">
             <svg className="h-4 w-4" fill="currentColor" viewBox="0 0 20 20">
               <path fillRule="evenodd" d="M18 10c0 3.866-3.582 7-8 7a8.841 8.841 0 01-4.083-.98L2 17l1.338-3.123C2.493 12.767 2 11.434 2 10c0-3.866 3.582-7 8-7s8 3.134 8 7zM7 9H5v2h2V9zm8 0h-2v2h2V9zM9 9h2v2H9V9z" clipRule="evenodd" />
             </svg>
             <span>{post.engagement.comments}</span>
           </div>
           
-          <div className="flex items-center gap-2 hover:text-green-400 cursor-pointer transition-colors">
+          <div className="flex items-center gap-2 hover:text-teal-400 cursor-pointer transition-colors">
             <svg className="h-4 w-4" fill="currentColor" viewBox="0 0 20 20">
               <path d="M15 8a3 3 0 10-2.977-2.63l-4.94 2.47a3 3 0 100 4.319l4.94 2.47a3 3 0 10.895-1.789l-4.94-2.47a3.027 3.027 0 000-.74l4.94-2.47C13.456 7.68 14.19 8 15 8z" />
             </svg>
@@ -204,11 +199,11 @@ const PostCard = ({ post }: { post: typeof dummyFeedData[0] }) => {
 
 const Feed = () => {
   return (
-    <div className="min-h-screen bg-black py-8">
+    <div className="min-h-screen bg-gradient-to-br from-gray-900 via-black to-gray-900 py-8">
       <div className="container mx-auto px-4">
         {/* Header */}
         <div className="mb-8 text-center">
-          <h1 className="text-4xl font-bold bg-gradient-to-r from-purple-400 to-pink-400 bg-clip-text text-transparent mb-2">
+          <h1 className="text-4xl font-bold bg-gradient-to-r from-blue-400 via-cyan-400 to-teal-400 bg-clip-text text-transparent mb-2">
             TokenReddit Feed
           </h1>
           <p className="text-gray-400">
@@ -225,7 +220,7 @@ const Feed = () => {
         
         {/* Load More Button */}
         <div className="mt-8 text-center">
-          <button className="rounded-full bg-gradient-to-r from-purple-500 to-pink-500 px-8 py-3 font-semibold text-white hover:from-purple-600 hover:to-pink-600 transition-all duration-200 transform hover:scale-105 shadow-lg hover:shadow-purple-500/25">
+          <button className="rounded-full bg-gradient-to-r from-blue-600 to-cyan-600 hover:from-blue-700 hover:to-cyan-700 px-8 py-3 font-semibold text-white transition-all duration-200 transform hover:scale-105 shadow-lg hover:shadow-blue-500/25">
             Load More Posts
           </button>
         </div>
